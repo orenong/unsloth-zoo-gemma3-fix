@@ -637,22 +637,22 @@ def convert_to_gguf(
     max_shard_size = check_max_shard_size(max_shard_size)
     quantization_type, _ = check_quantization_type(quantization_type)
 
-    # if not os.path.exists(input_folder):
-    #     raise RuntimeError(f"Unsloth: `{input_folder}` does not exist?")
+    if not os.path.exists(input_folder):
+        raise RuntimeError(f"Unsloth: `{input_folder}` does not exist?")
 
     # config_file = os.path.join(input_folder, "config.json")
     # if not os.path.exists(config_file):
     #     raise RuntimeError(f"Unsloth: `config.json` does not exist inside `{input_folder}`.")
 
-    # # Load config.json
+    # Load config.json
     # with open(config_file, "r", encoding = "utf-8") as config_file:
     #     config_file = json.load(config_file)
     # pass
 
-    # # Get latest llama.cpp conversion file
-    # conversion_filename, supported_types = _download_convert_hf_to_gguf()
+    # Get latest llama.cpp conversion file
+    conversion_filename, supported_types = _download_convert_hf_to_gguf()
 
-    # # Check if arch is supported
+    # Check if arch is supported
     # assert("architectures") in config_file
     # arch = config_file["architectures"][0]
     # if arch not in supported_types:
